@@ -4,14 +4,13 @@
  */
 
 var assert = require('assert');
+var Person = require('./person');
 var hypo = require('..');
 
+
 describe("Factory", function() {
-	var Person, plugin;
+	var plugin;
 	beforeEach(function() {
-		Person = function() {
-			this.firstName = 'john';
-		};
 		plugin = function(ctx) {
 			ctx.name = function(lastName) {
 				return this.firstName + ' ' + lastName;
@@ -20,12 +19,21 @@ describe("Factory", function() {
 	});
 	
 	it('should create factory to add plugins', function() {
-		var Bar = hypo(Person)
+		var Citizen = hypo(Person)
 		  .use(plugin);
 
-		var person = new Bar();
-		var name = person.name('doe');
+		var doe = new Citizen();
+		var name = doe.name('doe');
 		assert.equal(name, 'john doe');
+	});
+
+	it('should create new object every time', function() {
+		var Citizen = hypo(Person)
+		  .use(plugin);
+
+		var beep = new Citizen();
+		var boop = new Citizen();
+		assert.notEqual(beep, boop);
 	});
 
 });
