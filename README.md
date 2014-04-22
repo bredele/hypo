@@ -8,18 +8,18 @@ Hypo
   The **use** pattern emerged with [express](http://github.com/visionmedia/express) and allows you to expose an object's context in order to extend it. Here's its implementation:
 
 ```js
-function Foo() {
+function Person() {
 	this.name = 'beep';
 }
 
-Foo.prototype.use = function(fn, opts) {
+Person.prototype.use = function(fn, opts) {
   fn(this, opts);
   return this;
 };
 ```
 and a plugin example:
 ```js
-var obj = new Foo();
+var obj = new Person();
 
 // create dummy plugin
 obj.use(function(ctx) {
@@ -40,12 +40,11 @@ obj.dummy();
 
 ```js
 var hypo = require('hypo');
-var Bar = hypo(Foo)
-  .use(dummy)
-  .use(hello)
-  .use(world);
+var Citizen = hypo(Person)
+  .use(dummy);
 
-var obj = new Bar();
+var obj = new Citizen();
+obj.name();
+// beep boop
 ```
 
-  Hypo 
