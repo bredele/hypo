@@ -1,6 +1,6 @@
 {
   "name": "hypo",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Plugin injector for use-friendly interfaces",
   "main": "index.js",
   "directories": {

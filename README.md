@@ -10,8 +10,8 @@ Hypo
   The **use** pattern emerged with [express](http://github.com/visionmedia/express) and allows you to expose an object's context in order to extend it. Here's its implementation:
 
 ```js
-function Person() {
-	this.name = 'beep';
+function Person(name) {
+	this.name = name || 'beep';
 }
 
 Person.prototype.use = function(fn, opts) {
@@ -40,6 +40,8 @@ obj.dummy();
   
 ## Usage
 
+  Extend an object constructor with plugins:
+
 ```js
 var hypo = require('hypo');
 var Citizen = hypo(Person)
@@ -49,6 +51,14 @@ var obj = new Citizen();
 obj.name();
 // beep boop
 ```
+  you can also pass some arguments
+
+```js
+var obj = new Citizen('bredele');
+obj.name();
+// bredele boop
+```
+
 ## License
 
 The MIT License (MIT)

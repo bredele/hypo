@@ -2,7 +2,7 @@
   "name": "hypo",
   "repository": "bredele/hypo",
   "description": "Plugin injector for use-friendly interfaces",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "keywords": [],
   "dependencies": {},
   "development": {},
