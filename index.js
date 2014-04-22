@@ -3,7 +3,7 @@
  * Expose 'hypo'
  */
 
-module.exports = function(proto) {
+module.exports = function(constructor) {
 
 	var plugins = [];
 
@@ -13,15 +13,15 @@ module.exports = function(proto) {
 	 * @api public
 	 */
 
-	function hypo() {
-		// we also shou pass arguments, may be extend prototype
-		// of a new object
-		var obj = new proto();
+	var hypo = function() {
+		var proto = {};
+		proto.__proto__ = constructor.prototype;
+		constructor.apply(proto, arguments);
 		for(var l = plugins.length; l--;) {
-			obj.use.apply(obj, plugins[l]);
+			proto.use.apply(proto, plugins[l]);
 		}
-		return obj;
-	}
+		return proto;
+	};
 
 
 	hypo.use = function(fn) {
